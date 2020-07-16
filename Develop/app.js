@@ -34,7 +34,7 @@ async function getAllEmployeeInformation() {
             const newEmployeeObject = await getEmployeeObject(name, ID, email);
             allEmployees.push(newEmployeeObject);
         }
-
+        render(allEmployees);
     } catch (err) {
         console.log(err);
     }
@@ -71,6 +71,10 @@ async function getEmployeeObject(name, ID, email) {
     } catch (err) {
         console.log(err);
     }
+}
+
+function buildhtml(employees) {
+
 }
 
 getAllEmployeeInformation()
