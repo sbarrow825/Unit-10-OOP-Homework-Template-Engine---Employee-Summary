@@ -1,175 +1,192 @@
 # Unit 10 OOP Homework: Template Engine - Employee Summary
 
-One of the most important aspects of programming is writing code that is readable, reliable, and maintainable. Oftentimes, *how* we design our code is just as important as the code itself. In this homework assignment, your challenge is to build a Node CLI that takes in information about employees and generates an HTML webpage that displays summaries for each person. Since testing is a key piece in making code maintainable, you will also be ensuring that all unit tests pass.
+## Description
 
+npm Inquirer CLI app for generating a personalized website for your team
 
-## Instructions
+## Table of Contents
 
-You will build a software engineering team generator command line application. The application will prompt the user for information about the team manager and then information about the team members. The user can input any number of team members, and they may be a mix of engineers and interns. This assignment must also pass all unit tests. When the user has completed building the team, the application will create an HTML file that displays a nicely formatted team roster based on the information provided by the user. Following the [common templates for user stories](https://en.wikipedia.org/wiki/User_story#Common_templates), we can frame this challenge as follows:
+* [Installation](#Installation)
+* [Usage](#Usage)
+* [License](#License)
+* [Dependencies](#Dependencies)
+* [Contributions](#Contributions)
+* [Tests](#Tests)
+* [Questions](#Questions)
 
-```
-As a manager
-I want to generate a webpage that displays my team's basic info
-so that I have quick access to emails and GitHub profiles
-```
+## Installation
 
-How do you deliver this? Here are some guidelines:
+Make sure that you've downloaded [Node.js from the nodejs.org website](https://nodejs.org/en/download/), then run the following command in the working directory of this project to install the necessary node modules
 
-* Use the [Inquirer npm package](https://github.com/SBoudrias/Inquirer.js/) to prompt the user for their email, id, and specific information based on their role with the company. For instance, an intern may provide their school, whereas an engineer may provide their GitHub username.
-
-* Your app will run as a Node CLI to gather information about each employee.
-
-* Below is an example of what your application may look like. Remember, the styling is completely up to you so try to make it unique.
-
-![Employee Summary 1](./Assets/10-OOP-homework-demo-1.png)
-![Employee Summary 2](./Assets/10-OOP-homework-demo-2.png)
-
-In the `Develop` folder, there is a `package.json`, so make sure to `npm install`.
-
-The dependencies are, [jest](https://jestjs.io/) for running the provided tests, and [inquirer](https://www.npmjs.com/package/inquirer) for collecting input from the user.
-
-There are also unit tests to help you build the classes necessary.
-
-It is recommended that you follow this workflow:
-
-1. Run tests
-2. Create or update classes to pass a single test case
-3. Repeat
-
-🎗 Remember, you can run the tests at any time with `npm run test`
-
-It is recommended that you start with a directory structure that looks like this:
-
-```
-lib/           // classes and helper code
-output/        // rendered output
-templates/     // HTML template(s)
-test/          // jest tests
-  Employee.test.js
-  Engineer.test.js
-  Intern.test.js
-  Manager.test.js
-app.js         // Runs the application
+```sh
+npm install
 ```
 
-### Hints
+## Usage
 
-* Create multiple HTML templates for each type of user. For example, you could use the following templates:
+In order to run the program, type the following command into your command line with this project in your current working directory
 
-  * `main.html`
+```sh
+node app.js
+```
 
-  * `engineer.html`
-  
-  * `intern.html`
-  
-  * `manager.html`
+The program uses npm inquirer to prompt the user for some information in order to generate a team.html file with personalized information about you and your team members
 
-* You will want to make your methods as pure as possible. This means try to make your methods simple so that they are easier to test.
+## License
 
-* The different employee types should all inherit some methods and properties from a base class of `Employee`.
+![MIT License](https://img.shields.io/npm/l/inquirer)
 
-* In your HTML template files, you may want to add a placeholder character that helps your program identify where the dynamic markup begins and ends.
+## Dependencies
 
-## Minimum Requirements
+List of dependency statuses for all packages used in this project
 
-* Functional application.
+* npm Inquirer ![](https://img.shields.io/librariesio/release/npm/inquirer)
 
-* GitHub repository with a unique name and a README describing the project.
+## Contributions
 
-* User can use the CLI to generate an HTML page that displays information about their team.
+The following in a copy of the [Contributor Covenant v2.0](https://www.contributor-covenant.org/). Please read before contributing to understand contribution guidelines.
 
-* All tests must pass.
+### Our Pledge
 
-### Classes
-The project must have the these classes: `Employee`, `Manager`, `Engineer`,
-`Intern`. The tests for these classes in the `tests` directory must all pass.
+We as members, contributors, and leaders pledge to make participation in our
+community a harassment-free experience for everyone, regardless of age, body
+size, visible or invisible disability, ethnicity, sex characteristics, gender
+identity and expression, level of experience, education, socio-economic status,
+nationality, personal appearance, race, religion, or sexual identity
+and orientation.
 
-The first class is an `Employee` parent class with the following properties and
-methods:
+We pledge to act and interact in ways that contribute to an open, welcoming,
+diverse, inclusive, and healthy community.
 
-  * name
-  * id
-  * email
-  * getName()
-  * getId()
-  * getEmail()
-  * getRole() // Returns 'Employee'
+### Our Standards
 
-The other three classes will extend `Employee`. 
+Examples of behavior that contributes to a positive environment for our
+community include:
 
-In addition to `Employee`'s properties and methods, `Manager` will also have:
+* Demonstrating empathy and kindness toward other people
+* Being respectful of differing opinions, viewpoints, and experiences
+* Giving and gracefully accepting constructive feedback
+* Accepting responsibility and apologizing to those affected by our mistakes,
+  and learning from the experience
+* Focusing on what is best not just for us as individuals, but for the
+  overall community
 
-  * officeNumber
+Examples of unacceptable behavior include:
 
-  * getRole() // Overridden to return 'Manager'
+* The use of sexualized language or imagery, and sexual attention or
+  advances of any kind
+* Trolling, insulting or derogatory comments, and personal or political attacks
+* Public or private harassment
+* Publishing others' private information, such as a physical or email
+  address, without their explicit permission
+* Other conduct which could reasonably be considered inappropriate in a
+  professional setting
 
-In addition to `Employee`'s properties and methods, `Engineer` will also have:
+### Enforcement Responsibilities
 
-  * github  // GitHub username
+Community leaders are responsible for clarifying and enforcing our standards of
+acceptable behavior and will take appropriate and fair corrective action in
+response to any behavior that they deem inappropriate, threatening, offensive,
+or harmful.
 
-  * getGithub()
+Community leaders have the right and responsibility to remove, edit, or reject
+comments, commits, code, wiki edits, issues, and other contributions that are
+not aligned to this Code of Conduct, and will communicate reasons for moderation
+decisions when appropriate.
 
-  * getRole() // Overridden to return 'Engineer'
+### Scope
 
-In addition to `Employee`'s properties and methods, `Intern` will also have:
+This Code of Conduct applies within all community spaces, and also applies when
+an individual is officially representing the community in public spaces.
+Examples of representing our community include using an official e-mail address,
+posting via an official social media account, or acting as an appointed
+representative at an online or offline event.
 
-  * school 
+### Enforcement
 
-  * getSchool()
+Instances of abusive, harassing, or otherwise unacceptable behavior may be
+reported to the community leaders responsible for enforcement at
+sbarrow825@berkeley.edu
 
-  * getRole() // Overridden to return 'Intern'
+All complaints will be reviewed and investigated promptly and fairly.
 
-### User input
+All community leaders are obligated to respect the privacy and security of the
+reporter of any incident.
 
-The project must prompt the user to build an engineering team. An engineering
-team consists of a manager, and any number of engineers and interns.
+#### Enforcement Guidelines
 
-### Roster output
+Community leaders will follow these Community Impact Guidelines in determining
+the consequences for any action they deem in violation of this Code of Conduct:
 
-The project must generate a `team.html` page in the `output` directory, that displays a nicely formatted team roster. Each team member should display the following in no particular order:
+#### 1. Correction
 
-  * Name
+**Community Impact**: Use of inappropriate language or other behavior deemed
+unprofessional or unwelcome in the community.
 
-  * Role
+**Consequence**: A private, written warning from community leaders, providing
+clarity around the nature of the violation and an explanation of why the
+behavior was inappropriate. A public apology may be requested.
 
-  * ID
+#### 2. Warning
 
-  * Role-specific property (School, link to GitHub profile, or office number)
+**Community Impact**: A violation through a single incident or series
+of actions.
 
-## Bonus
+**Consequence**: A warning with consequences for continued behavior. No
+interaction with the people involved, including unsolicited interaction with
+those enforcing the Code of Conduct, for a specified period of time. This
+includes avoiding interactions in community spaces as well as external channels
+like social media. Violating these terms may lead to a temporary or
+permanent ban.
 
-* Use validation to ensure that the information provided is in the proper expected format.
+#### 3. Temporary Ban
 
-* Add the application to your portfolio.
+**Community Impact**: A serious violation of community standards, including
+sustained inappropriate behavior.
 
-## Commit Early and Often
+**Consequence**: A temporary ban from any sort of interaction or public
+communication with the community for a specified period of time. No public or
+private interaction with the people involved, including unsolicited interaction
+with those enforcing the Code of Conduct, is allowed during this period.
+Violating these terms may lead to a permanent ban.
 
-One of the most important skills to master as a web developer is version control. Building the habit of committing via Git is important for two reasons:
+#### 4. Permanent Ban
 
-* Your commit history is a signal to employers that you are actively working on projects and learning new skills.
+**Community Impact**: Demonstrating a pattern of violation of community
+standards, including sustained inappropriate behavior,  harassment of an
+individual, or aggression toward or disparagement of classes of individuals.
 
-* Your commit history allows you to revert your codebase in the event that you need to return to a previous state.
+**Consequence**: A permanent ban from any sort of public interaction within
+the community.
 
-Follow these guidelines for committing:
+### Attribution
 
-* Make single-purpose commits for related changes to ensure a clean, manageable history. If you are fixing two issues, make two commits.
+This Code of Conduct is adapted from the [Contributor Covenant][homepage],
+version 2.0, available at
+https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.
 
-* Write descriptive, meaningful commit messages so that you and anyone else looking at your repository can easily understand its history.
+Community Impact Guidelines were inspired by [Mozilla's code of conduct
+enforcement ladder](https://github.com/mozilla/diversity).
 
-* Don't commit half-done work, for the sake of your collaborators (and your future self!).
+[homepage]: https://www.contributor-covenant.org
 
-* Test your application before you commit to ensure functionality at every step in the development process.
+For answers to common questions about this code of conduct, see the FAQ at
+https://www.contributor-covenant.org/faq. Translations are available at
+https://www.contributor-covenant.org/translations.
 
-We would like you to have well over 200 commits by graduation, so commit early and often!
+## Tests
 
+The following shows a screenshot of terminal inputs used to run the program
 
-## Submission on BCS
+![Terminal inputs](Assets/terminalInputs.png)
 
-You are required to submit the following:
+The following shows the website generated from the above terminal inputs
 
-* The URL of the GitHub repository
+![md file](Assets/generatedWebsite.png)
 
-* A video demonstrating the entirety of the app's functionality 
+## Questions
 
-- - -
-© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+![Github Profile Picture](https://github.com/sbarrow825.png)
+
+For any questions concerning this project, please feel free to email me at sbarrow825@berkeley.edu
+
