@@ -10,6 +10,87 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+async function getAllEmployeeInformation() {
+    try {
+        const { number } = await inquirer.prompt({
+            message: "How many employees are on your team? (including you)",
+            name: "number"
+        });
+        allEmployees = [];
+        for (i = 0; i < number; i += 1) {
+            console.log(`for employee number ${i + 1}`)
+            const { name } = await inquirer.prompt({
+                message: "What is this employee's name?",
+                name: "name"
+            })
+            const { ID } = await inquirer.prompt({
+                message: `What is ${name}'s ID number?`,
+                name: "ID"
+            })
+            const { email } = await inquirer.prompt({
+                message: `What is ${name}'s email?`,
+                name: "email"
+            })
+            const newEmployeeObject = await getEmployeeObject(name, ID, email);
+            allEmployees.push(newEmployeeObject);
+        }
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+async function getEmployeeObject(name, ID, email) {
+    try {
+        const { role } = await inquirer.prompt({
+            message: `What is ${name}'s role? Manager, Intern, or Engineer`,
+            name: "role"
+        })
+        if (role.toLowerCase() === "intern") {
+            const { school } = await inquirer.prompt({
+                message: `Where does ${name} go to school?`,
+                name: "school"
+            })
+            return new Intern(name, id, email, school);
+        } else if (role.toLowerCase() === "engineer") {
+            const { github } = await inquirer.prompt({
+                message: `What is ${name}'s github profile name?`,
+                name: "github"
+            })
+            return new Engineer(name, id, email, github);
+        } else if (role.toLowerCase() === "manager") {
+            const { officeNumber } = await inquirer.prompt({
+                message: `What is ${name}'s office number?`,
+                name: "officeNumber"
+            })
+            return new Manager(name, id, email, officeNumber);
+        } else {
+            console.log("Invalid input, role must be intern, engineer, or manager")
+            return getRoleSpecificParameter(name, ID, email);
+        }
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+getAllEmployeeInformation()
+
+// for (i = 0; i < number; i += 1) {
+//     console.log(`for employee number ${i + 1}`);
+//     async function getEmployeeType() {
+//         try {
+//             const { type } = await inquirer.prompt({
+//                 message: "What is this employee's role? Manager, Engineer, or Intern",
+//                 name: "type"
+//             });
+//         } catch (err) {
+//             console.log(err);
+//         }
+//     }
+//     if (type.toLowerCase() === "manager") {
+
+//     }
+// }
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
